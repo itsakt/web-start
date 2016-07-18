@@ -13,7 +13,6 @@ const config = {
       ],
       less: [
         './src/less/*.less',
-        './scr/less/*.less'
       ],
       js: [
         './src/**/*.js'
@@ -26,7 +25,7 @@ const config = {
       style: 'style.css',
       app: 'dist',
       dist: 'dist',
-      less: 'src',
+      less: 'src/css',
       images: 'dist/images',
   }
 };
@@ -90,7 +89,7 @@ gulp.task('clean', function (cb) {
       [
         config.paths.html, config.paths.images, config.paths.js, config.paths.less
       ], [
-        'html', 'images', 'css', 'js'
+        'html', 'images', 'css', 'js', 'less'
       ]);
   })
 
