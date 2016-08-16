@@ -75,12 +75,12 @@ gulp.task('clean', function (cb) {
 
   .task('js', function () {
     return gulp.src(config.paths.app)
-      .pipe(webpack(require('./webpack.config.js')))
+      .pipe(webpack(require('./webpack.config.dev.js')))
       .pipe(gulp.dest(config.dest.app))
   })
   .task('js:min', function () {
     return gulp.src(config.paths.js)
-      .pipe(webpack(require('./webpack.config.min.js')))
+      .pipe(webpack(require('./webpack.config.prod.js')))
       .pipe(gulp.dest(config.dest.app))
   })
 
