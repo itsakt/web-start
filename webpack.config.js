@@ -9,6 +9,7 @@ module.exports = {
     filename: "./[name].bundle.js",
     sourceMapFilename: "./[name].bundle.map"
   },
+  watch: true,
   devtool: '#source-map',
   plugins: [
     new webpack.DefinePlugin({

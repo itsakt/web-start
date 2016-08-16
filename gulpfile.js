@@ -8,25 +8,25 @@ const gulp = require('gulp'),
 
 const config = {
   paths: {
-      css: [
-        './src/css/**/*.css'
-      ],
-      less: [
-        './src/less/*.less',
-      ],
-      js: [
-        './src/**/*.js'
-      ],
-      app: './src/app.js',
-      html: ['./src/**/*.html'],
-      images: './src/images/**/*.*',
+    css: [
+      './src/css/**/*.css'
+    ],
+    less: [
+      './src/less/*.less',
+    ],
+    js: [
+      './src/**/*.js'
+    ],
+    app: './src/app.js',
+    html: ['./src/**/*.html'],
+    images: './src/images/**/*.*',
   },
   dest: {
-      style: 'style.css',
-      app: 'dist',
-      dist: 'dist',
-      less: 'src/css',
-      images: 'dist/images',
+    style: 'style.css',
+    app: 'dist',
+    dist: 'dist',
+    less: 'src/css',
+    images: 'dist/images',
   }
 };
 
@@ -84,14 +84,33 @@ gulp.task('clean', function (cb) {
       .pipe(gulp.dest(config.dest.app))
   })
 
-  .task('watch', function () {
+  // Watches
+  .task('watch:html', function () {
     return gulp.watch(
       [
-        config.paths.html, config.paths.images, config.paths.js, config.paths.less
+        config.paths.html
       ], [
-        'html', 'images', 'css', 'js', 'less'
+        'html'
       ]);
   })
+  .task('watch:images', function () {
+    return gulp.watch(
+      [
+        config.paths.images
+      ], [
+        'images'
+      ]);
+  })
+  .task('watch:less', function () {
+    return gulp.watch(
+      [
+        config.paths.less
+      ], [
+        'css'
+      ]);
+  })
+
+  .task('watch', ['watch:html', 'watch:images', 'watch:less'])
 
   /********************
    * *               **
@@ -113,7 +132,7 @@ gulp.task('clean', function (cb) {
     }, done).start();
   })
 
-  .task('run', ['html', 'images', 'css', 'js','watch'])
+  .task('run', ['html', 'images', 'css', 'js', 'watch'])
   .task('build', ['html', 'images', 'css', 'js'])
   .task('build:min', ['html', 'images', 'css:min', 'js:min'])
 
