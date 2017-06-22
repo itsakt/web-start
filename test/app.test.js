@@ -1,9 +1,5 @@
-describe('Test', function () {
-
-  it('should pass', function () {
-
-    expect(true).toBe(true);
-
-  });
-
-});
+describe('Test', function() {
+  it('should pass', function() {
+    expect(true).toBe(true)
+  })
+})

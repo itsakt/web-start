@@ -1,13 +1,13 @@
-var path = require("path");
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: 'app',
+    app: './src/app'
   },
   output: {
-    filename: "./[name].bundle.js",
-    sourceMapFilename: "./[name].bundle.map"
+    path: path.resolve('dist'),
+    filename: 'app.bundle.js'
   },
   watch: true,
   devtool: '#source-map',
@@ -16,20 +16,20 @@ module.exports = {
       'process.env.NODE_ENV': '"development"'
     })
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    modules: [path.join(__dirname, 'src'), 'node_modules']
+  },
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel',
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015', 'stage-2']
+          presets: ['es2015', 'react']
         }
       }
     ]
-  },
-  resolve: {
-    root: path.resolve('./src/'),
-    extensions: ['', '.js']
   }
 }
